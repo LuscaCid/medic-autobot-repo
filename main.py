@@ -716,194 +716,196 @@ def programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nom
     pyautogui.click(x,y)
     time.sleep(0.5)
     pyautogui.press("f4")
-
+    time.sleep(1)
     p = 0 
     while p < len(pacientes):
         gratuidade = gratuidadeOrig
-        time.sleep(0.6)
+        time.sleep(0.5)
         pyautogui.press("f2")
         time.sleep(0.2)
         pyautogui.press("f4")
-        time.sleep(1.8)
+        time.sleep(0.9)
         pyautogui.hotkey("shift","TAB")
         time.sleep(0.2)
         pyautogui.write(pacientes[p])
-        print(pacientes[p])
         p = p + 1
-        time.sleep(0.5)
-        pyautogui.press('f4')
-        time.sleep(0.4)
-        pyautogui.press("f10")
+        pyautogui.press("f4")
         time.sleep(0.2)
         pyautogui.press("left")
         time.sleep(0.2)
         pyautogui.press("enter")
-
         time.sleep(0.3)
-        pyautogui.click(x=109, y=268)
-        time.sleep(0.1)
-        pyautogui.hotkey("ctrl","c")
-        time.sleep(0.2)
         pyautogui.press("f10")
         time.sleep(0.2)
         pyautogui.press("left")
         time.sleep(0.1)
         pyautogui.press("enter")
+        if len(procedimentos) > 1:
+            time.sleep(0.3)
+            pyautogui.click(x=109, y=268)
+            time.sleep(0.1)
+            pyautogui.hotkey("ctrl","c")
+            time.sleep(0.2)
+            pyautogui.press("f10")
+            time.sleep(0.2)
+            pyautogui.press("left")
+            time.sleep(0.1)
+            pyautogui.press("enter")
 
-        time.sleep(0.1)
-        x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
-        pyautogui.click(x,y)
-        time.sleep(0.2)
-        pyautogui.click(x=164, y=470)
-        pyautogui.hotkey("ctrl", "v")
-        pyautogui.click(x=255, y=473)
-        time.sleep(7.9)
-        pyautogui.scroll(-1000)
-        time.sleep(0.1)
-        x, y = pyautogui.locateCenterOnScreen("./_internal/images/selecionarProfissional.png", region=(50, 130, 700, 270), confidence=0.9)
-        pyautogui.click(x, y)
-        if nomeMed.startswith("clara") or nomeMed.startswith("CLARA"):
-            pyautogui.write("andre")
-            pyautogui.press("down")
-        else:
-            pyautogui.write(nomeMed)
-        if nomeMed.startswith("andre") or nomeMed.startswith("Andre") or nomeMed.startswith("ANDRE"):
-            pyautogui.press("down")
-        time.sleep(0.4)
-        pyautogui.press("enter")
-        time.sleep(0.3)
-        while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9) == True:
-            print("carregando")
-        time.sleep(1.2)
-        twoTimes = 0
-        i = 1
-        while i < len(procedimentos):
-            verifier = 0
-            time.sleep(1.7)
+            time.sleep(0.1)
+            x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
+            pyautogui.click(x,y)
+            time.sleep(0.2)
+            pyautogui.click(x=164, y=470)
+            pyautogui.hotkey("ctrl", "v")
+            pyautogui.click(x=255, y=473)
+            time.sleep(7.9)
             pyautogui.scroll(-1000)
             time.sleep(0.1)
-            if pyautogui.locateCenterOnScreen("./_internal/images/selecionarProcedimento.png", confidence=0.9):
-                x, y = pyautogui.locateCenterOnScreen("./_internal/images/selecionarProcedimento.png", confidence=0.9)
-                pyautogui.click(x, y)
-            else:
-                pyautogui.click(x=294, y=505)
-            if procedimentos[i] == "ceratoscopia":
-                pyautogui.write("topografia")
-            else:
-                pyautogui.write(procedimentos[i])
-            pyautogui.press("enter")
-            time.sleep(1)
-            
-            if pyautogui.locateCenterOnScreen("./_internal/images/popup-qtd.png", confidence=0.9) == True:
-                pyautogui.press("enter")
-                gratuidade.append(procedimentos[i])
-                continue
-            time.sleep(1.2)
-            conter = 0
-            while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9):
-                print("carregando")
-                time.sleep(1)
-                conter += 1
-                print(conter)
-                if conter > 5: break
-            if conter > 5:
-                pyautogui.press("enter")
-                pyautogui.press("f5")
-                time.sleep(0.8)
-                pyautogui.press("enter")
-                time.sleep(0.8)
-                pyautogui.scroll("2500")
-
-                gratuidade.append(procedimentos[i])
-                verifier = 1
-
-            if procedimentos[i].startswith(procedimentos[i - 1]) and verifier == 0:
-                time.sleep(1)
-                while True:
-                    if pyautogui.locateCenterOnScreen("./_internal/images/botaosim2.png", confidence=0.9):
-                        break
-                    time.sleep(0.2)
-                    print("carregando")
-                time.sleep(1)
-                x, y = pyautogui.locateCenterOnScreen("./_internal/images/botaosim2.png", confidence=0.9)
-                pyautogui.click(x, y)
-                time.sleep(0.8)
-                while True:
-                    print("saindo da tela")
-                    if pyautogui.locateCenterOnScreen("./_internal/images/botaosim2.png", confidence=0.9) != True:
-                        break
-                time.sleep(2.8)
-                twoTimes = 1
-            else:
-                time.sleep(1.2)
-
-            if verifier == 0: procedimentosPaciente.append(procedimentos[i])
-            i = i + 1
-            pyautogui.scroll(-1000)
-        time.sleep(0.7)
-        if(twoTimes==1):
-            time.sleep(4.3)
-        pyautogui.scroll(-2500)
-        if len(procedimentosPaciente) > 1 and procedimentosPaciente != "vetor":
-            pyautogui.scroll(-500)
-            time.sleep(0.2)
-            if(pyautogui.locateCenterOnScreen("./_internal/images/imprimirGuia.png", confidence=0.9)):
-                x, y = pyautogui.locateCenterOnScreen("./_internal/images/imprimirGuia.png", confidence=0.9)
-            else: pyautogui.click(x=309, y=551)
+            x, y = pyautogui.locateCenterOnScreen("./_internal/images/selecionarProfissional.png", region=(50, 130, 700, 270), confidence=0.9)
             pyautogui.click(x, y)
-            time.sleep(5.5)
-            pyautogui.hotkey("ctrl", "p")
-            funcao_btn_imprimir()
-            time.sleep(0.4)
-        
-        k = 790
-        j = 442
-        if len(procedimentosPaciente) > 1:
-            i = len(procedimentosPaciente) -1
-            while i > 0:
-                x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
-                pyautogui.click(x, y)
-                time.sleep(0.1)
-                x, y = pyautogui.locateCenterOnScreen("./_internal/images/demandaaberta.png", confidence=0.9)
-                pyautogui.click(x, y)
-                time.sleep(0.2)
-                pyautogui.moveTo(x,y+500)
-                pyautogui.scroll(-1500)
-                time.sleep(0.2)
-                pyautogui.doubleClick(k, j)
-                pyautogui.hotkey("ctrl", "c")
-                pyautogui.doubleClick(k - 30, j)
-                pyautogui.hotkey("ctrl", "c")
-
-                time.sleep(0.1)
-                if i == 1:
-                    pyautogui.hotkey("ctrl","w")
-                j = j - 30
-                x, y = pyautogui.locateCenterOnScreen("./_internal/images/atende-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
-                pyautogui.click(x, y)
-                time.sleep(0.3)
-                pyautogui.press("f3")
-                time.sleep(0.3)
-                pyautogui.hotkey("ctrl", "enter")
-                time.sleep(0.2)
-                pyautogui.write(procedimentosPaciente[i])
-                time.sleep(0.2)
-                pyautogui.press("enter")
-                time.sleep(0.2)
-                pyautogui.press("enter")
-                pyautogui.press("TAB", 3)
-                pyautogui.write(nomeMed)
+            if nomeMed.startswith("clara") or nomeMed.startswith("CLARA"):
+                pyautogui.write("andre")
                 pyautogui.press("down")
-                pyautogui.press("f5")
+            else:
+                pyautogui.write(nomeMed)
+            if nomeMed.startswith("andre") or nomeMed.startswith("Andre") or nomeMed.startswith("ANDRE"):
+                pyautogui.press("down")
+            time.sleep(0.4)
+            pyautogui.press("enter")
+            time.sleep(0.3)
+            while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9) == True:
+                print("carregando")
+            time.sleep(1.2)
+            twoTimes = 0
+            i = 1
+            while i < len(procedimentos):
+                verifier = 0
+                time.sleep(1.7)
+                pyautogui.scroll(-1000)
+                time.sleep(0.1)
+                if pyautogui.locateCenterOnScreen("./_internal/images/selecionarProcedimento.png", confidence=0.9):
+                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/selecionarProcedimento.png", confidence=0.9)
+                    pyautogui.click(x, y)
+                else:
+                    pyautogui.click(x=294, y=505)
+                if procedimentos[i] == "ceratoscopia":
+                    pyautogui.write("topografia")
+                else:
+                    pyautogui.write(procedimentos[i])
+                pyautogui.press("enter")
+                time.sleep(1)
+                
+                if pyautogui.locateCenterOnScreen("./_internal/images/popup-qtd.png", confidence=0.9) == True:
+                    pyautogui.press("enter")
+                    gratuidade.append(procedimentos[i])
+                    continue
+                time.sleep(1.2)
+                conter = 0
+                while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9):
+                    print("carregando")
+                    time.sleep(1)
+                    conter += 1
+                    print(conter)
+                    if conter > 5: break
+                if conter > 5:
+                    pyautogui.press("enter")
+                    pyautogui.press("f5")
+                    time.sleep(0.8)
+                    pyautogui.press("enter")
+                    time.sleep(0.8)
+                    pyautogui.scroll("2500")
+
+                    gratuidade.append(procedimentos[i])
+                    verifier = 1
+
+                if procedimentos[i].startswith(procedimentos[i - 1]) and verifier == 0:
+                    time.sleep(1)
+                    while True:
+                        if pyautogui.locateCenterOnScreen("./_internal/images/botaosim2.png", confidence=0.9):
+                            break
+                        time.sleep(0.2)
+                        print("carregando")
+                    time.sleep(1)
+                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/botaosim2.png", confidence=0.9)
+                    pyautogui.click(x, y)
+                    time.sleep(0.8)
+                    while True:
+                        print("saindo da tela")
+                        if pyautogui.locateCenterOnScreen("./_internal/images/botaosim2.png", confidence=0.9) != True:
+                            break
+                    time.sleep(2.8)
+                    twoTimes = 1
+                else:
+                    time.sleep(1.2)
+
+                if verifier == 0: procedimentosPaciente.append(procedimentos[i])
+                i = i + 1
+                pyautogui.scroll(-1000)
+            time.sleep(0.7)
+            if(twoTimes==1):
+                time.sleep(4.3)
+            pyautogui.scroll(-2500)
+            if len(procedimentosPaciente) > 1 and procedimentosPaciente != "vetor":
+                pyautogui.scroll(-500)
                 time.sleep(0.2)
-                pyautogui.press("enter")
-                pyautogui.hotkey("ctrl", "v")
-                time.sleep(0.1)
-                pyautogui.press("enter")
-                time.sleep(0.1)
-                pyautogui.press("enter")
-                time.sleep(0.3)
-                i = i - 1
+                if(pyautogui.locateCenterOnScreen("./_internal/images/imprimirGuia.png", confidence=0.9)):
+                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/imprimirGuia.png", confidence=0.9)
+                else: pyautogui.click(x=309, y=551)
+                pyautogui.click(x, y)
+                time.sleep(5.5)
+                pyautogui.hotkey("ctrl", "p")
+                funcao_btn_imprimir()
+                time.sleep(0.4)
+            
+            k = 790
+            j = 442
+            if len(procedimentosPaciente) > 1:
+                i = len(procedimentosPaciente) -1
+                while i > 0:
+                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
+                    pyautogui.click(x, y)
+                    time.sleep(0.1)
+                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/demandaaberta.png", confidence=0.9)
+                    pyautogui.click(x, y)
+                    time.sleep(0.2)
+                    pyautogui.moveTo(x,y+500)
+                    pyautogui.scroll(-1500)
+                    time.sleep(0.2)
+                    pyautogui.doubleClick(k, j)
+                    pyautogui.hotkey("ctrl", "c")
+                    pyautogui.doubleClick(k - 30, j)
+                    pyautogui.hotkey("ctrl", "c")
+
+                    time.sleep(0.1)
+                    if i == 1:
+                        pyautogui.hotkey("ctrl","w")
+                    j = j - 30
+                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/atende-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
+                    pyautogui.click(x, y)
+                    time.sleep(0.3)
+                    pyautogui.press("f3")
+                    time.sleep(0.3)
+                    pyautogui.hotkey("ctrl", "enter")
+                    time.sleep(0.2)
+                    pyautogui.write(procedimentosPaciente[i])
+                    time.sleep(0.2)
+                    pyautogui.press("enter")
+                    time.sleep(0.2)
+                    pyautogui.press("enter")
+                    pyautogui.press("TAB", 3)
+                    pyautogui.write(nomeMed)
+                    pyautogui.press("down")
+                    pyautogui.press("f5")
+                    time.sleep(0.2)
+                    pyautogui.press("enter")
+                    pyautogui.hotkey("ctrl", "v")
+                    time.sleep(0.1)
+                    pyautogui.press("enter")
+                    time.sleep(0.1)
+                    pyautogui.press("enter")
+                    time.sleep(0.3)
+                    i = i - 1
 
     time.sleep(1)
     pyautogui.press("enter", 3)
@@ -1022,12 +1024,14 @@ def receber_lista():
     gratuidadeOrig += gratuidadeJson
     print(procedimentos)
     if isConsGrat=='sim':
-        gratuidade.append('consulta medica')
         gratuidade += gratuidadeJson
+        gratuidade += 'consulta medica'
         programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nameMed,crm,gratuidadeOrig)
     
     else:
         gratuidade+= gratuidadeJson
+        
+        print(gratuidade)
         program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade)
  
     return jsonify({'resultado': nameMed})
