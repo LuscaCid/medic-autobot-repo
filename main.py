@@ -855,6 +855,9 @@ def programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nom
             pyautogui.hotkey("ctrl", "p")
             funcao_btn_imprimir()
             time.sleep(0.4)
+        
+        k = 790
+        j = 442
         if len(procedimentosPaciente) > 1:
             i = len(procedimentosPaciente) -1
             while i > 0:
