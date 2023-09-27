@@ -1009,7 +1009,7 @@ def receber_lista():
     especialidade = data.get('especialidade')
     dfitp = data.get('dfitp')
     mfitp = data.get('mfitp')
-
+    yfitp = data.get('yfitp')
 
     pacientes = []
     procedimentos =[]
@@ -1027,15 +1027,17 @@ def receber_lista():
     #adding the year to verify te version that will work in the actual
     gratuidadeOrig.extend(gratuidadeJson)
     print(procedimentos)
-    if(dfitp < 6 and mfitp <= 10 or dfitp < 31 and mfitp < 10):    
-        if isConsGrat=='sim':
-            gratuidade.extend(gratuidadeJson)
-            programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nameMed,crm,gratuidadeOrig)
-        
-        else:
-            gratuidade.extend(gratuidadeJson)
-            print(gratuidade)
-            program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade)
+    if yfitp == 2023:    
+        if(dfitp < 6 and mfitp <= 10 or dfitp < 31 and mfitp < 10):    
+            if isConsGrat=='sim':
+                gratuidade.extend(gratuidadeJson)
+                programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nameMed,crm,gratuidadeOrig)
+            
+            else:
+                gratuidade.extend(gratuidadeJson)
+                print(gratuidade)
+                program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade)
+        else : print('denied access')
     else : print('denied access')
     return jsonify({'resultado': nameMed})
 

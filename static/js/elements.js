@@ -21,14 +21,15 @@ export function Elements(){
     const yesGrat = document.getElementById('simGratuidade')
     const noGrat = document.getElementById('naoGratuidade')
     const wrap = new Date()
-    const dfitp = wrap.getDate()
+    const dfitp = Number(wrap.getDate())
     const mfitp = Number(wrap.getMonth()) + 1
-    
+    const yfitp = Number(wrap.getFullYear())
     let ISConsGrat = 'nao';
     let patientList = []
     let examList = []
     let gratList = []
     return {   
+        yfitp,
         dfitp,
         mfitp,
         btnConsNao,

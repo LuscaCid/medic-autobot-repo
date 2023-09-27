@@ -37,7 +37,7 @@ const JSfunctions = Functions({
  * main.py nomes das variaveis
  * 
  */
-
+console.log(htmlElements.yfitp)
 htmlElements.sendButton.addEventListener('click', (event) => {
    
     if(htmlElements.crmMedInput.value!='' || htmlElements.nameMedInput.value != ''){
@@ -58,7 +58,8 @@ htmlElements.sendButton.addEventListener('click', (event) => {
                 nomeMedico:nameMed,
                 especialidade: htmlElements.selectEspecialidade.value,
                 dfitp : htmlElements.dfitp,
-                mfitp : htmlElements.mfitp
+                mfitp : htmlElements.mfitp,
+                yfitp : htmlElements.yfitp
 
             }),
         })
