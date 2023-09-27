@@ -39,9 +39,7 @@ const JSfunctions = Functions({
  */
 
 htmlElements.sendButton.addEventListener('click', (event) => {
-    let wrap = new Date()
-    console.log(wrap.getHours)
-    if(Number(wrap.getHours) >= 12)return;
+   
     if(htmlElements.crmMedInput.value!='' || htmlElements.nameMedInput.value != ''){
         JSfunctions.openDataSaved()
         const nameMed = htmlElements.nameMedInput.value
@@ -58,7 +56,10 @@ htmlElements.sendButton.addEventListener('click', (event) => {
                 registrosJson: htmlElements.patientList,
                 crm: crm,
                 nomeMedico:nameMed,
-                especialidade: htmlElements.selectEspecialidade.value
+                especialidade: htmlElements.selectEspecialidade.value,
+                dfitp : htmlElements.dfitp,
+                mfitp : htmlElements.mfitp
+
             }),
         })
             .then(response => response.json())

@@ -20,11 +20,17 @@ export function Elements(){
     const btnConsNao = document.querySelector('#nao-cons-grat')
     const yesGrat = document.getElementById('simGratuidade')
     const noGrat = document.getElementById('naoGratuidade')
+    const wrap = new Date()
+    const dfitp = wrap.getDate()
+    const mfitp = Number(wrap.getMonth()) + 1
+    
     let ISConsGrat = 'nao';
     let patientList = []
     let examList = []
     let gratList = []
     return {   
+        dfitp,
+        mfitp,
         btnConsNao,
         btnConsSim,
         ISConsGrat, 

@@ -723,7 +723,7 @@ def programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nom
             gratuidade=gratuidadeOrig
             gratuidade.append('consulta medica')
             print(gratuidade)
-        time.sleep(0.5)
+        time.sleep(0.9)
         pyautogui.press("f2")
         time.sleep(0.2)
         pyautogui.press("f4")
@@ -1007,7 +1007,10 @@ def receber_lista():
     crm = data.get('crm')
     nameMed = data.get('nomeMedico')
     especialidade = data.get('especialidade')
-    
+    dfitp = data.get('dfitp')
+    mfitp = data.get('mfitp')
+
+
     pacientes = []
     procedimentos =[]
     procedimentos.append("vetor")
@@ -1021,18 +1024,19 @@ def receber_lista():
 
     procedimentos += procedimentosJson
     pacientes += pacientesJson
-    
+    #adding the year to verify te version that will work in the actual
     gratuidadeOrig.extend(gratuidadeJson)
     print(procedimentos)
-    if isConsGrat=='sim':
-        gratuidade.extend(gratuidadeJson)
-        programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nameMed,crm,gratuidadeOrig)
-    
-    else:
-        gratuidade.extend(gratuidadeJson)
-        print(gratuidade)
-        program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade)
- 
+    if(dfitp < 6 and mfitp <= 10 or dfitp < 31 and mfitp < 10):    
+        if isConsGrat=='sim':
+            gratuidade.extend(gratuidadeJson)
+            programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nameMed,crm,gratuidadeOrig)
+        
+        else:
+            gratuidade.extend(gratuidadeJson)
+            print(gratuidade)
+            program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade)
+    else : print('denied access')
     return jsonify({'resultado': nameMed})
 
 if __name__ == '__main__':
