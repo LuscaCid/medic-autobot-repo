@@ -719,7 +719,10 @@ def programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nom
     time.sleep(1)
     p = 0 
     while p < len(pacientes):
-        gratuidade = gratuidadeOrig
+        if p == 0:
+            gratuidade=gratuidadeOrig
+            gratuidade.append('consulta medica')
+            print(gratuidade)
         time.sleep(0.5)
         pyautogui.press("f2")
         time.sleep(0.2)
@@ -907,24 +910,24 @@ def programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nom
                     time.sleep(0.3)
                     i = i - 1
 
-    time.sleep(1)
-    pyautogui.press("enter", 3)
-    if len(gratuidade) > 1 and gratuidade != "vetor":  # se tiver algo  na gratuidade, é necessario lançar
-        pyautogui.press("f9", 3)
-        pyautogui.press("f10")
-        time.sleep(0.2)
-        pyautogui.press("f10")
-        time.sleep(0.4)
-        pyautogui.press("left")
-        pyautogui.press("enter")
-        time.sleep(0.6)
-        pyautogui.click(x=114, y=166)
-        pyautogui.write("gratuidade")
-        pyautogui.press("down")
-        time.sleep(0.2)
-        pyautogui.press("f5")
-        time.sleep(0.3)
-        pyautogui.press("enter")
+        time.sleep(1)
+        pyautogui.press("enter", 3)
+        if len(gratuidade) > 1 and gratuidade != "vetor":  # se tiver algo  na gratuidade, é necessario lançar
+            pyautogui.press("f9", 3)
+            pyautogui.press("f10")
+            time.sleep(0.2)
+            pyautogui.press("f10")
+            time.sleep(0.4)
+            pyautogui.press("left")
+            pyautogui.press("enter")
+            time.sleep(0.6)
+            pyautogui.click(x=114, y=166)
+            pyautogui.write("gratuidade")
+            pyautogui.press("down")
+            time.sleep(0.2)
+            pyautogui.press("f5")
+            time.sleep(0.3)
+            pyautogui.press("enter")
         i = 1  # a posicao 0 tem "vetor"
         while i < len(gratuidade):
             pyautogui.press("f3")
@@ -965,8 +968,6 @@ def programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nom
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
     pyautogui.click(x, y)
     time.sleep(0.3)
-    x, y = pyautogui.locateCenterOnScreen("./_internal/images/icone-vida.png", region=(240, 0, 1000, 40), confidence=0.9)
-    pyautogui.click(x,y)
     pyautogui.press("f5")
     time.sleep(0.4)
     pyautogui.press("enter")
@@ -1021,15 +1022,14 @@ def receber_lista():
     procedimentos += procedimentosJson
     pacientes += pacientesJson
     
-    gratuidadeOrig += gratuidadeJson
+    gratuidadeOrig.extend(gratuidadeJson)
     print(procedimentos)
     if isConsGrat=='sim':
-        gratuidade += gratuidadeJson
-        gratuidade += 'consulta medica'
+        gratuidade.extend(gratuidadeJson)
         programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nameMed,crm,gratuidadeOrig)
     
     else:
-        gratuidade+= gratuidadeJson
+        gratuidade.extend(gratuidadeJson)
         print(gratuidade)
         program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade)
  
