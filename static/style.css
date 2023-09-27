@@ -1,0 +1,327 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    font-size: 62.5%;
+    --backgroundColor: #000;
+    --formFontFamily: 'Archivo', sans-serif; 
+}
+body{
+    background: rgb(219, 219, 219);
+}
+body::before{
+    content: '';
+    position: absolute;
+    min-height: 30rem;
+    width: 100%;
+    background: var(--backgroundColor);
+    
+    z-index: -1;
+    box-shadow: 0 0.2rem 0.3rem rgb(0,0,0,0.4);
+}
+main .texts{
+    width: 100%;
+}
+main{
+    border-bottom: 1px solid rgb(184, 184, 184);
+    background: rgb(255, 255, 255);
+    border-radius: 1rem 1rem 0 0;
+    
+}
+.page{
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+}
+#h1-e-img{
+    display: flex;
+    gap: 2rem;
+   
+    justify-content: space-between;
+    align-items: center;
+}
+.content{
+    max-width: min(62rem, 87%);
+}
+.secao-gratuidade legend{
+    width: 100%;
+}
+
+#h1-e-img img{
+    filter: invert(1);
+}
+.page #h1-e-img h1{
+    color: rgb(136, 155, 241);
+    width: 20%;
+    justify-content: space-between;
+    display: flex;
+    font-size: 4.2rem;
+    font-family: 'Poppins' ,sans-serif;
+}
+.texts p {
+    font-family: 'Poppins' ,sans-serif;
+    font-size: 1.6rem;
+    color: white;
+    width: 70%;
+}
+.texts span{
+    transition: background 0.3s;
+}
+.texts span:hover{
+    background: rgb(161, 161, 233);
+}
+ .texts{
+    padding: 1.4rem 1rem;
+    width: 100%;
+    
+}
+#send{
+    margin-bottom: 6rem;
+    
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: var(--formFontFamily);
+    color: white;
+    width: 100%;
+    border: none;
+    background: rgb(94, 204, 94);
+    padding: 1.5rem;
+    border-radius: 0 0 1rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#send:hover{
+    background: rgb(77, 163, 77);
+}
+main form{
+    padding: 2.8rem 1.6rem;
+    font-family: var(--formFontFamily) ;
+}
+
+main form legend{
+    padding-bottom: 1rem;
+    width: fit-content;
+    border-bottom: 1px solid black;
+    font-size: 2.3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+main form label{
+    font-size: 1.8rem;
+}
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.input-wrapper input{
+    font-size: 1.6rem;
+    font-family: var(--formFontFamily);
+    width: 100%;
+    border-radius: .8rem;
+    border: none;
+    background: rgba(228, 227, 227, 0.658);
+    padding: 1rem 1rem;
+}
+.input-wrapper label span{
+    font-size: 1.5rem;
+    color: rgb(207, 203, 203);
+    transition: color 0.3s;
+}
+.input-wrapper label span:hover{
+    color: black;
+}
+#formulario{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.secao-procedimentos{
+    
+    margin-top: 1.6rem;
+}
+.entry{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.input-wrapper #exame, .input-wrapper #registro{
+    width: 50%;
+    
+}
+#add-exame, #add-registro,#add-gratuidade{
+    transition: transform 0.3s;
+    border: none;
+    background: none;
+    height: fit-content;
+    cursor: pointer;
+}
+#add-exame:hover,#add-registro:hover,#add-gratuidade:hover{
+    transform: scale(1.1);
+}
+#opcoes-especialidade, #opcoes-exames,#opcoes-exames-gratuidade{
+    font-weight: 400;
+    font-size: 1.5rem;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(306deg, rgb(243, 215, 228) 0%, rgb(214, 232, 255) 100%);
+    padding: .8rem;
+    border-radius: .8rem;
+}
+#opcoes-exames{
+    width: 50%;
+}
+.hide{
+    display: none;
+}
+.alert-error,.alert-error-data{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: rgb(255, 87, 87);
+    text-align: center;
+    padding: 0.2rem;
+    font-size: 1.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: white;
+    transform: translateY(-35px);
+    transition: transform 0.5s;
+}
+
+.gratRegistrada{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;  
+    text-align: center;
+    padding: 0.2rem;
+    font-size: 1.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: rgb(243, 241, 241);
+    transform: translateY(-35px);
+    transition: transform 0.5s;
+    background: rgb(61, 161, 255);
+}
+.alert-error.open, .alert-error-data.open,.gratRegistrada.open{
+    transform: translateY(0);
+}
+.alert-error.close,.alert-error-data.close,.gratRegistrada.close{
+    transform:translatey(-35px)
+}
+
+ul{ 
+    width: 56%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    list-style: none;
+}
+li{
+    font-size: 1.8rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    background: rgb(196, 196, 255);
+    padding: 0.2rem 0.5rem;
+    width: 100%;
+}
+
+.area-registros ul li{
+    width: 100%;
+    display: flex;
+    gap: .5rem;
+    justify-content: space-between;
+    
+}
+    
+li button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+li button:hover{
+    transform: scale(1.2);
+}
+li span{
+    gap: 1rem;
+    display: flex;
+    
+}
+li span p{
+    transition: background 0.3s;
+}
+li span p:hover{
+    background: rgb(85, 49, 214);
+    color: rgb(255, 255, 255);
+}
+li{
+    padding: 0.6rem;
+    
+}
+#gratuidade{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-wrapper.procGrat input{
+    width: 50%;
+}
+.buttonsGrat #simGratuidade, #sim-cons-grat,#nao-cons-grat{
+    background: rgb(58, 58, 240);
+    padding: 0.9rem 1.5rem;
+    border: none;
+    font-size: 1.6rem;
+    border-radius: 0.6rem;
+    font-family: 'Poppins' sans-serif;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+    
+}
+.buttonsGrat, .buttons-cons-grat{
+    display: flex;
+    gap: .3rem;
+}
+.buttonsGrat #naoGratuidade{
+    background: rgb(58, 58, 240);
+    padding: 0.9rem 1.5rem;
+    border: none;
+    font-size: 1.6rem;
+    border-radius: 0.6rem;
+    font-family: 'Poppins' sans-serif;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+    
+}
+
+
+.buttonsGrat #simGratuidade:hover , #sim-cons-grat:hover,#nao-cons-grat:hover{
+    transform: translateY(-5px);
+    
+}
+.buttonsGrat #naoGratuidade:hover{
+    transform: translateY(-5px);
+    
+}
+/*
+* sronly-section
+*/
+.sr-only{
+    width: 1px;
+    height: 1px;
+    margin: -1rem;
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0,0,0,0);
+}

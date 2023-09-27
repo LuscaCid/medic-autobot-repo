@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic-AutoBot</title>
+    <link rel="shortcut icon" href="../static/assets/icons8-robô-64.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="../static/js/main.js" type="module" defer></script>
+</head>
+<body>
+    <div class="gratRegistrada">
+        <p>Registrado com sucesso</p>
+    </div>
+    
+    <div class="alert-error-data">
+        <p>Preencha os campos necessários</p>
+    </div>
+    <div class="alert-error">
+        <p>Apenas números</p>
+    </div>
+    <div class="page">
+        <div class="content">
+            <div class="texts">
+                <div id="h1-e-img">
+                    <h1>Autobot solutions</h1>
+                    <img src="../static/assets/robot-svgrepo-com.svg" alt="braço mecanico">
+                </div>   
+                <p>Aplicativo fornecido por <span>Lucas Cid</span> com o intuito de automatizar os demais processos no Hospital Santa Luzia </p>
+            </div>
+            <main>
+                
+
+                <form id="formulario">
+                    <legend>Insira os dados</legend>
+
+                    <div class="input-wrapper">
+                        <label>A consulta será cobrada na gratuidade?</label>
+                        <div class="buttons-cons-grat">
+                            <button id="sim-cons-grat">Sim</button>
+                            <button id="nao-cons-grat">Não</button>
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="medic-name">Nome do médico <span>(demanda aberta e smart)</span></label>
+                        <input id="medic-name" type="text" maxlength="20" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="medic-crm">Insira o CRM do médico <span>(solicitação amb)</span></label>
+                        <input type="text"  id="medic-crm" maxlength="10" required >
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="opcoes-especialidade">Insira a especialidade <span>(solicitação amb)</span></label>
+                        <select id="opcoes-especialidade" required>
+                            <option value="null">selecione</option>
+                            <option value="retina">Retina</option>
+                            <option value="catarata">Catarata</option>
+                            <option value="glaucoma">Glaucoma</option>
+                            <option value="plastica">Plástica ocular</option>
+                            <option value="estrabismo">Estrabismo</option>
+
+                        </select>
+                    </div>
+                    <div class="secao-procedimentos">
+                        <legend>Insira os exames</legend>
+                            
+                            <div class="input-wrapper">
+                            <label class="sr-only" for="opcoes-exames">Adicione o(s) exame(s)</label>
+                           
+                                <div class="entry">    
+                                    <select id="opcoes-exames" required>
+                                        <option value="null">selecione</option>
+                                        <option value="fundoscopia">Fundoscopia - 0211060100</option>
+                                        <option value="gonioscopia">Gonioscopia - 0211060119</option>
+                                        <option value="tonometria">Tonometria - 0211060259</option>
+                                        <option value="biomicroscopia">Biomicroscopia - 0211060020</option>
+                                        <option value="mapeamento">Mapeamento de retina - 0211060127</option>
+                                    </select>
+                                <button id="add-exame" ><img src="../static/assets/add-plus-square-svgrepo-com.svg" alt="botao de adicao">
+                                </button>
+                               
+                            </div>  
+                            <div class="area-exames">    
+                                <ul>                                    
+                                </ul>                         
+                            </div>         
+                        </div>               
+                    </div>
+                    <div class="secao-gratuidade">
+                        <legend>Haverá o lançamento de gratuidade também?</legend>
+                        <div class="input-wrapper">
+                            <div id="gratuidade">
+                                <label for="buttonsGrat">Selecione a opcao</label>
+                                <div class="buttonsGrat">
+                                    <button id="simGratuidade">Sim</button>
+                                    <button id="naoGratuidade">Não</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="input-wrapper procGrat hide">
+                            <label class="sr-only" for="opcoes-exames-gratuidade">insira os procedimentos <span>(gratuidade)</span> </label>
+                            <div class="entry">
+                                <select id="opcoes-exames-gratuidade" required>
+                                    <option value="null">selecione o procedimento</option>
+                                    <option value="fundoscopia">Fundoscopia - 0211060100</option>
+                                    <option value="gonioscopia">Gonioscopia - 0211060119</option>
+                                    <option value="tonometria">Tonometria - 0211060259</option>
+                                    <option value="biomicroscopia">Biomicroscopia - 0211060020</option>
+                                    <option value="mapeamento">Mapeamento de retina - 0211060127</option>
+                                </select>
+                                <button id="add-gratuidade"><img src="../static/assets/add-plus-square-svgrepo-com.svg" alt="botao de adicao">
+                                </button>
+                        
+                            </div>
+                            <div class="area-gratuidades">
+                                <ul>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="secao-registros">
+                        <legend>Insira os registros dos pacientes</legend>
+                            
+                            <div class="input-wrapper">
+                            <label class="sr-only" for="registro">Adicione o(s) registro(s)</label>
+                            
+                                <div class="entry">    
+                                    <input type="text" id="registro" placeholder="insira aqui">
+                                <button id="add-registro"><img src="../static/assets/add-plus-square-svgrepo-com.svg" alt="botao de adicao">
+                                </button>
+                                
+                                </div>
+                            <div class="area-registros">
+                                <ul>
+                                </ul>
+                            </div>   
+                                    
+                        </div>    
+                    </div>
+                </form>
+                
+            </main>
+            <button id="send" form="formulario">Começar</button>
+        </div>    
+            
+    </div>
+    
+</body>
+</html>
