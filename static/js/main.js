@@ -37,6 +37,12 @@ const JSfunctions = Functions({
  * main.py nomes das variaveis
  * 
  */
+
+
+/**
+ * 
+ * i need to remember that i have to remove images from _internal for the program works correctly in the executable couse the paths to find the images inside the folder have _internal before the name
+ */
 console.log(htmlElements.yfitp)
 htmlElements.sendButton.addEventListener('click', (event) => {
    
