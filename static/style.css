@@ -304,8 +304,19 @@ li{
     transition: transform 0.3s;
     
 }
-
-
+#sim-cons-grat{
+    background: rgb(90, 202, 90);
+}
+#nao-cons-grat{
+    background: rgb(255, 115, 115);
+}
+.buttons-cons-grat{
+    width: 100%;
+    
+}
+.buttons-cons-grat button{
+    width: 100%;
+}
 .buttonsGrat #simGratuidade:hover , #sim-cons-grat:hover,#nao-cons-grat:hover{
     transform: translateY(-5px);
     
