@@ -1030,7 +1030,6 @@ def receber_lista():
     
     else:
         gratuidade+= gratuidadeJson
-        
         print(gratuidade)
         program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade)
  
