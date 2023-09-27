@@ -452,7 +452,7 @@ position = 1
 
 
 
-def program(isConsGrat,procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade):
+def program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeOrig,crm,nameMed,especialidade):
     time.sleep(0.5)
     # este comando direciona pro google com o vida ja aberto e ja logado
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/atende-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
@@ -912,6 +912,10 @@ def programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nom
         pyautogui.press("f10")
         time.sleep(0.2)
         pyautogui.press("f10")
+        time.sleep(0.4)
+        pyautogui.press("left")
+        pyautogui.press("enter")
+        time.sleep(0.6)
         pyautogui.click(x=114, y=166)
         pyautogui.write("gratuidade")
         pyautogui.press("down")
