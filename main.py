@@ -80,10 +80,10 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     time.sleep(0.5)
     pyautogui.scroll(-500)
     consu_cod = "0301010072"
-    time.sleep(0.2)
+    time.sleep(0.8)
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/codprocedimentoNew.png", confidence=0.9)
     pyautogui.click(x, y)
-    time.sleep(0.7)
+    time.sleep(.5)
     pyautogui.write(consu_cod)
     pyautogui.click(x=290, y=454)
     time.sleep(1.7)
@@ -91,12 +91,12 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     time.sleep(0.5)
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/medoftalmo.png", confidence=0.9)
     pyautogui.click(x, y)
-    time.sleep(0.2)
+    time.sleep(0.4)
     while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9):
-        time.sleep(0.2)
-    time.sleep(0.3)
+        time.sleep(0.4)
+    time.sleep(0.4)
     pyautogui.scroll(-500)
-    time.sleep(0.2)
+    time.sleep(0.4)
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/especialidade.png", confidence=0.9)
     pyautogui.click(x, y)
     time.sleep(0.1)
@@ -106,9 +106,30 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     pyautogui.scroll(-1000)
     time.sleep(0.2)
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/proximo.png", confidence=0.9)
-    time.sleep(0.1)
-    pyautogui.click(x, y)
+    pyautogui.click(x,y)
     time.sleep(2.8)
+    if pyautogui.locateCenterOnScreen("_internal/images/popup-qtd.png", confidence=0.9):
+        pyautogui.press("enter")
+        time.sleep(0.4)
+        pyautogui.scroll(150)
+        x , y = pyautogui.locateCenterOnScreen("./_internal/images/medoftalmo.png", confidence=0.9)
+        pyautogui.click(x,y)
+        while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9):
+            time.sleep(0.4)
+        time.sleep(1)
+        pyautogui.scroll(-150)
+        time.sleep(0.3)
+        x, y = pyautogui.locateCenterOnScreen("./_internal/images/especialidade.png", confidence=0.9)
+        pyautogui.click(x, y)
+        pyautogui.write('retina')
+        pyautogui.press("enter")
+        time.sleep(0.7)
+        pyautogui.scroll(-1000)
+        time.sleep(0.2)
+        x, y = pyautogui.locateCenterOnScreen("./_internal/images/proximo.png", confidence=0.9)
+        time.sleep(0.1)
+        pyautogui.click(x, y)
+        time.sleep(0.4)
     if pyautogui.locateCenterOnScreen("./_internal/images/ddd.png",confidence=0.9) or pyautogui.locateCenterOnScreen('./_internal/images/mensagem-nova.png', confidence=0.9):
         pyautogui.press("enter")
         time.sleep(0.2)
@@ -138,7 +159,25 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
         if pyautogui.locateCenterOnScreen("./_internal/images/proximo.png", confidence=0.9):
             x, y = pyautogui.locateCenterOnScreen("./_internal/images/proximo.png", confidence=0.9)
             pyautogui.click(x, y)
-
+            time.sleep(1)
+            if pyautogui.locateCenterOnScreen("_internal/images/popup-qtd.png", confidence=0.9):
+                pyautogui.press("enter")
+                pyautogui.scroll(150)
+                x , y = pyautogui.locateCenterOnScreen("./_internal/images/medoftalmo.png", confidence=0.9)
+                pyautogui.click(x,y)
+                pyautogui.scroll(-150)
+                x, y = pyautogui.locateCenterOnScreen("./_internal/images/especialidade.png", confidence=0.9)
+                pyautogui.click(x, y)
+                pyautogui.write('retina')
+                pyautogui.press("enter")
+                time.sleep(0.7)
+                pyautogui.scroll(-1000)
+                time.sleep(0.2)
+                x, y = pyautogui.locateCenterOnScreen("./_internal/images/proximo.png", confidence=0.9)
+                time.sleep(0.1)
+                pyautogui.click(x, y)
+                time.sleep(0.4)
+        
     pyautogui.scroll(-500)
     time.sleep(0.4)
     if pyautogui.locateCenterOnScreen("./_internal/images/okcrmbtn.png", confidence=0.9) == False: pyautogui.click(x=127, y=217)
@@ -181,7 +220,7 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     pyautogui.press("enter")
     time.sleep(0.3)
     while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9) == True:
-        print("carregando")
+        print("carregando med")
     time.sleep(1.2)
     twoTimes = 0
     i = 1
@@ -209,21 +248,21 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
         time.sleep(1.2)
         conter = 0
         while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9):
+            if pyautogui.locateCenterOnScreen("./_internal/images/municipio-sem-saldo.png"):
+                pyautogui.press('enter')
+                gratuidade.append(procedimentos[i])
+
+            if pyautogui.locateCenterOnScreen("_internal/images/sempactomunicipio.png"):
+                pyautogui.press('enter')
+                gratuidade.append(procedimentos[i])
             print("carregando")
             time.sleep(1)
             conter += 1
             print(conter)
-            if conter > 5: break
-        if conter > 5:
-            pyautogui.press("enter")
-            pyautogui.press("f5")
-            time.sleep(0.8)
-            pyautogui.press("enter")
-            time.sleep(0.8)
-            pyautogui.scroll("2500")
-
-            gratuidade.append(procedimentos[i])
-            verifier = 1
+            if conter > 6:
+                verifier = 1
+                break
+                
 
         if procedimentos[i].startswith(procedimentos[i - 1]) and verifier == 0:
             time.sleep(1)
