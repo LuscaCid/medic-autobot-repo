@@ -54,4 +54,4 @@ Olá, me chamo Lucas Cid e simplesmente sou apaixonado por programação, passo 
 
 **Front-end:** javascript, html, CSS
 
-**Back-end:** Python, Flask
+**Back-end:** Python, Flask, PyautoGUI, PYtesseract ocr
