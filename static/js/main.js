@@ -21,7 +21,7 @@ const JSfunctions = Functions({
     
 })
 
-/**
+/*
  * espacos de memoria que eu preciso transferir pro python
  * 
  * nome do medic

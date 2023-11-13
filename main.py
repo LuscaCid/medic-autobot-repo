@@ -8,7 +8,7 @@ pw = ""
 def baixa_automatica(qtd_images):
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
     # qtd_images serve para mostrar quantas imagens tem para ler dentro da pasta
-    i = 40  # de onde comeca a leitura para o registro das guias de consulta
+    i = 0  # de onde comeca a leitura para o registro das guias de consulta
     pyautogui.click(x, y)
     time.sleep(0.3)
     pyautogui.hotkey("ctrl", "1")
@@ -51,8 +51,8 @@ def baixa_automatica(qtd_images):
 def funcao_btn_imprimir():
     time.sleep(0.3)
     while True:
-        if pyautogui.locateCenterOnScreen("./_internal/images/impressaobtn.png", confidence=0.9):
-            x, y = pyautogui.locateCenterOnScreen("./_internal/images/impressaobtn.png", confidence=0.9)
+        if pyautogui.locateCenterOnScreen("./_internal/images/botaoimprimir.png", confidence=0.9):
+            x, y = pyautogui.locateCenterOnScreen("./_internal/images/botaoimprimir.png", confidence=0.9)
             break
     time.sleep(0.2)
     pyautogui.click(x, y)
@@ -130,22 +130,25 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
         time.sleep(0.1)
         pyautogui.click(x, y)
         time.sleep(0.4)
-    if pyautogui.locateCenterOnScreen("./_internal/images/ddd.png",confidence=0.9) or pyautogui.locateCenterOnScreen('./_internal/images/mensagem-nova.png', confidence=0.9):
+    if pyautogui.locateCenterOnScreen("./_internal/images/ddd.png",confidence=0.9) or pyautogui.locateCenterOnScreen('./_internal/images/mensagem-nova.png', confidence=0.9) or pyautogui.locateCenterOnScreen('./_internal/images/dddobrigatorio.png', confidence=0.9):
         pyautogui.press("enter")
         time.sleep(0.2)
         pyautogui.scroll(2000)
-        time.sleep(0.2)
+        time.sleep(0.9)
         x , y = pyautogui.locateCenterOnScreen("./_internal/images/tipo-de-telefone.png",confidence=0.9)
-        pyautogui.click(x,y)
-        pyautogui.press('down')
-        pyautogui.press('enter')
-        time.sleep(1.3)
+        pyautogui.click(x,y + 20)
+        pyautogui.click(x=626, y=542)
+        time.sleep(1.5)
         pyautogui.doubleClick(x=803, y=600)
+        pyautogui.press('backspace', 3)
+        time.sleep(0.2)
         pyautogui.write("71")
+        time.sleep(0.2)
         pyautogui.click(803,550)
         time.sleep(0.8)
         pyautogui.doubleClick(x=868, y=601)
-        time.sleep(0.1)
+        time.sleep(0.8)
+        
         pyautogui.write("922125533")
         time.sleep(1)
         pyautogui.scroll(-2000)
@@ -179,12 +182,12 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
                 time.sleep(0.4)
         
     pyautogui.scroll(-500)
-    time.sleep(0.4)
+    time.sleep(0.8)
     if pyautogui.locateCenterOnScreen("./_internal/images/okcrmbtn.png", confidence=0.9) == False: pyautogui.click(x=127, y=217)
     else:
         x,y = pyautogui.locateCenterOnScreen("./_internal/images/okcrmbtn.png", confidence=0.9)
         pyautogui.click(x, y)
-    time.sleep(0.9)
+    time.sleep(1.9)
     if  pyautogui.locateCenterOnScreen("./_internal/images/finalizar.png", confidence=0.9):
         x,y = pyautogui.locateCenterOnScreen("./_internal/images/finalizar.png", confidence=0.9)
         pyautogui.click(x, y)
@@ -195,7 +198,10 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     pyautogui.hotkey("ctrl","p")
     funcao_btn_imprimir()
     time.sleep(0.5)
-    pyautogui.doubleClick(x=70, y=299)  # alocacao do proc
+    pyautogui.doubleClick(x=111, y=313)  # alocacao do proc
+    pyautogui.hotkey("ctrl", "c")
+    time.sleep(0.2)
+    pyautogui.doubleClick(x=113, y=310)  # alocacao do proc
     pyautogui.hotkey("ctrl", "c")
     time.sleep(0.1)
     x, y = pyautogui.locateCenterOnScreen("./_internal/images/icone-vida.png", region=(300, 0, 800, 40), confidence=0.9)
@@ -226,7 +232,7 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     i = 1
     while i < len(procedimentos):
         verifier = 0
-        time.sleep(1.7)
+        time.sleep(1.9)
         pyautogui.scroll(-1000)
         time.sleep(0.1)
         if pyautogui.locateCenterOnScreen("./_internal/images/selecionarProcedimento.png", confidence=0.9):
@@ -245,22 +251,16 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
             pyautogui.press("enter")
             gratuidade.append(procedimentos[i])
             continue
-        time.sleep(1.2)
+        time.sleep(1.4)
         conter = 0
         while pyautogui.locateCenterOnScreen("./_internal/images/carregando.png", confidence=0.9):
-            if pyautogui.locateCenterOnScreen("./_internal/images/municipio-sem-saldo.png"):
-                pyautogui.press('enter')
-                gratuidade.append(procedimentos[i])
-
-            if pyautogui.locateCenterOnScreen("_internal/images/sempactomunicipio.png"):
-                pyautogui.press('enter')
-                gratuidade.append(procedimentos[i])
-            print("carregando")
-            time.sleep(1)
+            time.sleep(1.3)
             conter += 1
             print(conter)
-            if conter > 6:
+            if conter > 7:
                 verifier = 1
+                gratuidade.append(procedimentos[i])
+                pyautogui.press('enter')
                 break
                 
 
@@ -282,7 +282,7 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
             time.sleep(2.8)
             twoTimes = 1
         else:
-            time.sleep(1.2)
+            time.sleep(1.4)
 
         if verifier == 0: procedimentosPaciente.append(procedimentos[i])
         i = i + 1
@@ -294,18 +294,25 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     if len(procedimentosPaciente) > 1 and procedimentosPaciente != "vetor":
         pyautogui.scroll(-500)
         time.sleep(0.2)
+        pyautogui.scroll(-500)
         if(pyautogui.locateCenterOnScreen("./_internal/images/imprimirGuia.png", confidence=0.9)):
             x, y = pyautogui.locateCenterOnScreen("./_internal/images/imprimirGuia.png", confidence=0.9)
+            pyautogui.click(x, y)
         else: pyautogui.click(x=309, y=551)
-        pyautogui.click(x, y)
-        time.sleep(5.5)
+        time.sleep(5.8)
         pyautogui.hotkey("ctrl", "p")
         funcao_btn_imprimir()
         time.sleep(0.4)
+    else :
+        pyautogui.scroll(2500)
+        time.sleep(0.4)
+        pyautogui.press("f5")
+        time.sleep(1.4)
+        pyautogui.press("enter")
+        
     # voltar para guia de agendamento
     # indo na aba do codigo de id
-    x, y = pyautogui.locateCenterOnScreen("./_internal/images/guiaagendamento.png", confidence=0.9)
-    pyautogui.click(x, y)
+    pyautogui.click(x=381, y=22)
     time.sleep(0.3)
     pyautogui.keyDown("ctrl")
     pyautogui.press("+",6)
@@ -364,7 +371,7 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     time.sleep(0.2)
     pyautogui.press("enter",2)
     time.sleep(0.4)
-    k = 790
+    k = 810
     j = 442
 
     if len(procedimentosPaciente) > 1:
@@ -373,10 +380,11 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
             x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
             pyautogui.click(x, y)
             time.sleep(0.1)
-            x, y = pyautogui.locateCenterOnScreen("./_internal/images/demandaaberta.png", confidence=0.9)
-            pyautogui.click(x, y)
+
+            pyautogui.click(x=614, y=20)
             time.sleep(0.2)
-            pyautogui.moveTo(x,y+500)
+            pyautogui.moveTo(x=1252, y=439)
+            time.sleep(0.2)
             pyautogui.scroll(-1500)
             time.sleep(0.2)
             pyautogui.doubleClick(k, j)
@@ -416,6 +424,9 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
 
     time.sleep(1)
     pyautogui.press("enter", 3)
+
+    gratuidade.clear()
+
     if len(gratuidade) > 1 and gratuidade != "vetor":  # se tiver algo  na gratuidade, é necessario lançar
         pyautogui.press("f9", 3)
         pyautogui.press("f10")
@@ -473,7 +484,7 @@ def continuacao_consulta(crm,especialidade,nomeMed,procedimentos,gratuidade,proc
     pyautogui.press("f5")
     time.sleep(0.4)
     pyautogui.press("enter")
-    time.sleep(0.5)
+    time.sleep(3.5)
     pyautogui.scroll(2000)
     time.sleep(0.2)
     pyautogui.hotkey("ctrl", "1")
@@ -651,95 +662,9 @@ def program(procedimentosPaciente,procedimentos,pacientes,gratuidade,gratuidadeO
 
                 else: #nao tem pacto, lanca tudo na gratuidade
                     print("n tem pacto")
-                    gratuidade = procedimentos.copy()
-                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/atende-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
-                    pyautogui.click(x, y)
-
-                    pyautogui.press("f10")
-                    time.sleep(0.2)
-                    pyautogui.press("left")
-                    time.sleep(0.1)
-                    pyautogui.press("enter")
-                    time.sleep(0.1)
-                    pyautogui.click(x=139, y=169)
-                    pyautogui.write("gratuidade")
-                    pyautogui.press("down")
-                    pyautogui.press("f5")
-                    time.sleep(0.2)
-                    i = 0
-                    contador = 0
-                    while i < len(gratuidade):
-                        if i == 0:
-                            pyautogui.press("enter")
-                            time.sleep(0.1)
-                            pyautogui.hotkey("ctrl", "enter")
-                            time.sleep(0.1)
-                            pyautogui.write("consulta medica")
-                            time.sleep(0.1)
-                            pyautogui.press("enter")
-                            time.sleep(0.1)
-                            pyautogui.press("enter")
-                            pyautogui.press("TAB", 3)
-                            pyautogui.write(crm)
-                            pyautogui.press("TAB")
-                            pyautogui.press("f5")
-                            time.sleep(0.2)
-                            pyautogui.press("left")
-                            pyautogui.press("enter")
-                            time.sleep(0.2)
-                            pyautogui.press("enter", 2)
-                            i = i + 1
-                            continue
-
-                        pyautogui.press("enter")
-                        pyautogui.hotkey("ctrl", "enter")
-                        time.sleep(0.1)
-                        pyautogui.write(gratuidade[i])
-                        pyautogui.press("enter")
-                        pyautogui.press("enter")
-                        pyautogui.press("TAB", 3)
-                        pyautogui.write(crm)
-                        pyautogui.press("TAB")
-                        pyautogui.press("f5")
-                        pyautogui.press("enter", 2)
-                        time.sleep(0.5)
-                        i = i + 1
-                    time.sleep(0.2)
-                    pyautogui.press("left")
-                    pyautogui.press("enter")
-                    pyautogui.press("f8")
-                    time.sleep(1.5)
-                    pyautogui.press("enter", 3)
-                    time.sleep(9.5)
-                    pyautogui.press("enter")
-                    time.sleep(0.2)
-                    pyautogui.press("f2")
-                    time.sleep(0.3)
-                    pyautogui.press("f4")
-
-                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/chrome-icon.png", region=(100, 730, 1200, 49), confidence=0.9)
-                    pyautogui.click(x, y)
-                    time.sleep(0.2)
-                    x, y = pyautogui.locateCenterOnScreen("./_internal/images/icone-vida.png", region=(240, 0, 1000, 40), confidence=0.9)
-                    pyautogui.click(x, y)
-                    pyautogui.press("f5")
-                    time.sleep(0.2)
-                    pyautogui.press("enter")
-                    time.sleep(0.5)
-                    pyautogui.scroll(2000)
-                    time.sleep(0.2)
-                    pyautogui.hotkey("ctrl", "1")
-                    time.sleep(0.1)
-                    pyautogui.press("f5")
-                    time.sleep(0.5)
-                    pyautogui.click(x=717, y=430)
-                    time.sleep(0.4)
-                    pyautogui.click(x=717, y=530)
+                    pyautogui.press('f5')
+                    time.sleep(1)
                     pyautogui.scroll(1000)
-                    time.sleep(0.3)
-                    pyautogui.scroll(-500)
-                    gratuidade.clear()
-                    gratuidade = gratuidadeOrig
 
 
 
@@ -1067,7 +992,7 @@ def receber_lista():
     gratuidadeOrig.extend(gratuidadeJson)
     print(procedimentos)
     if yfitp == 2023:    
-        if(dfitp < 6 and mfitp <= 10 or dfitp < 31 and mfitp < 10):    
+        if(dfitp < 6 and mfitp <= 10 or dfitp < 31 and mfitp < 12):    
             if isConsGrat=='sim':
                 gratuidade.extend(gratuidadeJson)
                 programConsGrat(pacientes,procedimentosPaciente,procedimentos,gratuidade,nameMed,crm,gratuidadeOrig)
